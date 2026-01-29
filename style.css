@@ -1,55 +1,204 @@
+:root {
+  color-scheme: dark;
+  font-family: "Exo 2", "Inter", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
 body {
-  background: radial-gradient(circle at top, #1a1a1a, #000);
-  color: gold;
-  font-family: "Exo 2", sans-serif;
+  margin: 0;
+  min-height: 100vh;
+  background: radial-gradient(circle at top, #1a1a1a, #000 55%);
+  color: #f6d86b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.container {
+  width: min(960px, 100%);
+  background: rgba(255, 215, 0, 0.08);
+  border: 1px solid rgba(255, 215, 0, 0.4);
+  border-radius: 24px;
+  padding: 28px;
+  box-shadow: 0 0 30px rgba(255, 215, 0, 0.25);
+}
+
+header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 12px;
+  margin: 0 0 8px;
+  color: rgba(255, 215, 0, 0.65);
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(28px, 4vw, 36px);
+}
+
+.subtitle {
+  margin: 8px 0 0;
+  color: rgba(255, 215, 0, 0.7);
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(120px, 1fr));
+  gap: 12px;
+}
+
+.stat {
+  background: rgba(16, 16, 16, 0.65);
+  border-radius: 16px;
+  padding: 12px 16px;
+  border: 1px solid rgba(255, 215, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.stat span {
+  font-size: 12px;
+  color: rgba(255, 215, 0, 0.6);
+}
+
+.stat strong {
+  font-size: 22px;
+}
+
+.game {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.canvas-wrap {
+  position: relative;
+  width: min(100%, 420px);
+  aspect-ratio: 1;
+}
+
+canvas {
+  width: 100%;
+  height: 100%;
+  border-radius: 18px;
+  background: #0d0d0d;
+  border: 2px solid rgba(255, 215, 0, 0.5);
+  box-shadow: inset 0 0 20px rgba(255, 215, 0, 0.2);
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(5, 5, 5, 0.75);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  border-radius: 18px;
   text-align: center;
   padding: 20px;
 }
 
-.container {
-  max-width: 500px;
-  margin: auto;
-  background: rgba(255, 215, 0, 0.08);
-  border: 2px solid gold;
-  border-radius: 20px;
-  padding: 20px;
-  box-shadow: 0 0 25px gold;
+.overlay.hidden {
+  display: none;
 }
 
-input, button {
-  width: 90%;
-  padding: 10px;
-  margin: 8px 0;
-  border: none;
-  border-radius: 10px;
-  font-size: 16px;
-}
-
-input {
-  background: #111;
-  color: gold;
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 24px;
 }
 
 button {
-  background: gold;
-  color: #111;
-  font-weight: bold;
+  border: none;
+  border-radius: 12px;
+  padding: 10px 18px;
+  font-size: 16px;
+  font-weight: 600;
   cursor: pointer;
-  transition: 0.2s;
+  background: #f6d86b;
+  color: #111;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 button:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 10px gold;
+  transform: translateY(-1px) scale(1.02);
+  box-shadow: 0 0 12px rgba(246, 216, 107, 0.6);
 }
 
-table {
-  width: 100%;
-  margin-top: 10px;
-  border-collapse: collapse;
+button.ghost {
+  background: transparent;
+  color: #f6d86b;
+  border: 1px solid rgba(246, 216, 107, 0.6);
 }
 
-th, td {
-  border-bottom: 1px solid gold;
-  padding: 5px;
+.speed {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.speed label {
+  font-size: 14px;
+  color: rgba(255, 215, 0, 0.7);
+}
+
+input[type="range"] {
+  accent-color: #f6d86b;
+}
+
+.tips {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.tip {
+  background: rgba(16, 16, 16, 0.65);
+  border-radius: 16px;
+  padding: 16px;
+  border: 1px solid rgba(255, 215, 0, 0.2);
+}
+
+.tip h3 {
+  margin-top: 0;
+}
+
+.tip p {
+  margin-bottom: 0;
+  color: rgba(255, 215, 0, 0.75);
+}
+
+@media (max-width: 640px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .speed {
+    justify-content: space-between;
+  }
 }

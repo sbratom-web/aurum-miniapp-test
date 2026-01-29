@@ -3,33 +3,63 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Откуп Aurum — Тест</title>
+  <title>Snake — Aurum Miniapp</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="container">
-    <h1>💰 Конкурс «Откуп Aurum»</h1>
-    <p>Введи свой TON-адрес и количество купленных токенов.<br>
-    Получи билеты и участвуй в розыгрыше!</p>
+    <header>
+      <div>
+        <p class="eyebrow">Aurum Miniapp</p>
+        <h1>🐍 Snake</h1>
+        <p class="subtitle">Собирай монеты, избегай столкновений и бей рекорды.</p>
+      </div>
+      <div class="stats">
+        <div class="stat">
+          <span>Счет</span>
+          <strong id="score">0</strong>
+        </div>
+        <div class="stat">
+          <span>Рекорд</span>
+          <strong id="bestScore">0</strong>
+        </div>
+      </div>
+    </header>
 
-    <form id="buyForm">
-      <input type="text" id="address" placeholder="Твой TON адрес" required>
-      <input type="number" id="amount" placeholder="Сколько токенов куплено" required>
-      <button type="submit">📩 Отправить</button>
-    </form>
+    <section class="game">
+      <div class="canvas-wrap">
+        <canvas id="game" width="400" height="400" aria-label="Поле игры змейка"></canvas>
+        <div class="overlay" id="overlay">
+          <h2 id="statusTitle">Нажми старт</h2>
+          <p id="statusText">Управление: стрелки или WASD.</p>
+          <button id="startBtn">▶️ Старт</button>
+        </div>
+      </div>
+    </section>
 
-    <div id="message"></div>
+    <section class="controls">
+      <button id="pauseBtn" class="ghost" type="button">⏸ Пауза</button>
+      <button id="resetBtn" type="button">🔄 Сброс</button>
+      <div class="speed">
+        <label for="speedRange">Скорость</label>
+        <input id="speedRange" type="range" min="6" max="14" value="10">
+      </div>
+    </section>
 
-    <h2>🎟️ Участники</h2>
-    <table id="table">
-      <thead>
-        <tr><th>Адрес</th><th>Токены</th><th>Билеты</th></tr>
-      </thead>
-      <tbody></tbody>
-    </table>
-
-    <button id="draw">🎲 Провести розыгрыш</button>
-    <div id="winner"></div>
+    <section class="tips">
+      <div class="tip">
+        <h3>💡 Цель</h3>
+        <p>Собирай монеты, каждая увеличивает длину и счет.</p>
+      </div>
+      <div class="tip">
+        <h3>🧱 Препятствия</h3>
+        <p>Каждые 5 монет появляется новый барьер.</p>
+      </div>
+      <div class="tip">
+        <h3>🎯 Комбо</h3>
+        <p>Без паузы набирай комбо и получай +2 к счету.</p>
+      </div>
+    </section>
   </div>
 
   <script src="script.js"></script>
